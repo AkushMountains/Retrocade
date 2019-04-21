@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Retrocade</title>
+		<meta charset="utf-8">
+		
+	<style>
+	body, html {
+	height: 100%;
+	margin: 0;
+	}
+
+	.bg {
+	/* The image used */
+	background-image: url("background_image.jpg");
+
+	/* Full height */
+	height: 100%; 
+
+	/* Center and scale the image nicely */
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+	</style>
+
+	<link rel = "stylesheet" type = "text/css" href = "support.css">
+
+	<!--Bootstrap CSS & JS Files-->
+		<link rel="stylesheet" type = "text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    </head>
+	
+	<body>
+	
+	<div class="bg"></div>
+	
+	<center><h1 class = "display-2" style="color:white"><b>High Scores</b></h1></center>
+	
+	<center><h1 id = "populate" class = "display-2" style="color:red"><b></b></h1>Here<center>
+	
+	
+	
+	
+	
+<script src="https://www.gstatic.com/firebasejs/5.10.0/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyB6KglJ_AXDzcj6NW-CQfnYlIQ0DrwD1Lk",
+    authDomain: "scores-dragonhacks.firebaseapp.com",
+    databaseURL: "https://scores-dragonhacks.firebaseio.com",
+    projectId: "scores-dragonhacks",
+    storageBucket: "scores-dragonhacks.appspot.com",
+    messagingSenderId: "377105541542"
+  };
+  firebase.initializeApp(config);
+ var high_score = 0;
+var leadsRef = database.ref('scores');
+leadsRef.on('value', function(snapshot) {
+    snapshot.forEach(function(childSnapshot) {
+      var childData = childSnapshot.val();
+	  if (childData> high_score){
+	  high_score = childData
+	  }
+    });
+});
+
+document.getElementByID('populate').innerHTML(high_score);
+
+</script>
+	
+	
+	
+	</body>
+</html>
+	
+	
